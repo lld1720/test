@@ -1,0 +1,2611 @@
+class 0 newbie_guide : citizen
+parameter_define_begin
+	string fnHi ""
+	string fnHighLevel ""
+	string fnRaceMisMatch ""
+	string fnGuideF05 ""
+	string fnGuideF10 ""
+	string fnGuideF15 ""
+	string fnGuideF20 ""
+	string fnGuideM07 ""
+	string fnGuideM14 ""
+	string fnGuideM20 ""
+	string ShopName ""
+	string fnCoupon1Ok "newbie_guide002.htm"
+	string fnCoupon1Not1 "newbie_guide003.htm"
+	string fnCoupon1Not2 "newbie_guide004.htm"
+	string fnCoupon1Not3 "newbie_guide005.htm"
+	string fnCoupon2Ok "newbie_guide011.htm"
+	string fnCoupon2Not1 "newbie_guide012.htm"
+	string fnCoupon2Not2 "newbie_guide013.htm"
+	string fnCoupon2Not3 "newbie_guide014.htm"
+	int num_coupon1 5
+	int num_coupon2 1
+	string fnNoSummonCreature "blessing_list002b.htm"
+parameter_define_end
+property_define_begin
+	telposlist_begin Position
+		{1010001; -84169; 244693; -3729; 100000; 0 }
+	telposlist_end
+property_define_end
+handler 3 12	//  TALKED
+	variable_begin
+		"talker"
+		"myself"
+		"_choiceN"
+		"_code"
+		"_from_choice"
+	variable_end
+
+	push_event	//  myself
+	push_const 800			//ShowPage
+	add
+	fetch_i			//ShowPage
+	push_event	//  talker
+	push_const 40			//talker
+	add
+	fetch_i
+	push_parameter fnHi
+	func_call 235012172	//  func[ShowPage]
+	shift_sp -2
+	shift_sp -1
+handler_end
+
+handler 12 10	//  CREATED
+	variable_begin
+		"myself"
+		"_choiceN"
+		"_code"
+		"_from_choice"
+	variable_end
+
+	push_event	//  myself
+	push_const 800			//RegisterTeleporterType
+	add
+	fetch_i			//RegisterTeleporterType
+	push_const 1			//unary->INTEGER_CONST
+	push_const 0			//unary->INTEGER_CONST
+	func_call 235012615	//  func[RegisterTeleporterType]
+	shift_sp -2
+	shift_sp -1
+	call_super
+handler_end
+
+handler 31 2399	//  MENU_SELECTED
+	variable_begin
+		"talker"
+		"ask"
+		"reply"
+		"i0"
+		"c0"
+		"myself"
+		"_choiceN"
+		"_code"
+		"_from_choice"
+	variable_end
+
+	push_event	//  ask
+	push_const 160			//ask
+	add
+	fetch_i4
+	push_const 7			//unary->INTEGER_CONST
+	negate
+	equal
+	push_reg_sp
+	fetch_i			//and list
+	branch_false L9928
+	push_event	//  reply
+	push_const 272			//reply
+	add
+	fetch_i
+	push_const 1			//unary->INTEGER_CONST
+	equal
+	and
+L9928
+	branch_false L9930
+L9929
+	push_event	//  myself
+	push_const 800			//myself
+	add
+	fetch_i			//sm
+	push_const 1480			//sm
+	add
+	fetch_i			//race
+	push_const 120			//race
+	add
+	fetch_i4
+	push_const 5			//unary->INTEGER_CONST
+	equal
+	branch_false L9932
+L9931
+	push_event	//  talker
+	push_const 40			//talker
+	add
+	fetch_i			//race
+	push_const 120			//race
+	add
+	fetch_i4
+	push_event	//  myself
+	push_const 800			//myself
+	add
+	fetch_i			//sm
+	push_const 1480			//sm
+	add
+	fetch_i			//race
+	push_const 120			//race
+	add
+	fetch_i4
+	not_equal
+	branch_false L9934
+L9933
+	push_event	//  myself
+	push_const 800			//ShowPage
+	add
+	fetch_i			//ShowPage
+	push_event	//  talker
+	push_const 40			//talker
+	add
+	fetch_i
+S2058.	"guide_krenisk003.htm"
+	push_string S2058
+	func_call 235012172	//  func[ShowPage]
+	shift_sp -2
+	shift_sp -1
+	jump L9935
+L9934
+	push_event	//  talker
+	push_const 40			//talker
+	add
+	fetch_i			//level
+	push_const 6636			//level
+	add
+	fetch_i4
+	push_const 20			//unary->INTEGER_CONST
+	greater
+	push_reg_sp
+	fetch_i			//or exit label
+	branch_true L9936
+	push_event	//  myself
+	push_const 800			//IsInCategory
+	add
+	fetch_i			//IsInCategory
+	push_const 62			//unary->INTEGER_CONST
+	push_event	//  talker
+	push_const 40			//talker
+	add
+	fetch_i			//occupation
+	push_const 124			//occupation
+	add
+	fetch_i4
+	func_call 235012324	//  func[IsInCategory]
+	shift_sp -2
+	push_const 1			//unary->INTEGER_CONST
+	not_equal
+	or
+L9936
+	branch_false L9938
+L9937
+	push_event	//  myself
+	push_const 800			//ShowPage
+	add
+	fetch_i			//ShowPage
+	push_event	//  talker
+	push_const 40			//talker
+	add
+	fetch_i
+S2059.	"guide_krenisk002.htm"
+	push_string S2059
+	func_call 235012172	//  func[ShowPage]
+	shift_sp -2
+	shift_sp -1
+	jump L9939
+L9938
+	push_event	//  talker
+	push_const 40			//talker
+	add
+	fetch_i			//occupation
+	push_const 124			//occupation
+	add
+	fetch_i4
+	push_const 123			//unary->INTEGER_CONST
+	equal
+	branch_false L9941
+L9940
+	push_event	//  talker
+	push_const 40			//talker
+	add
+	fetch_i			//level
+	push_const 6636			//level
+	add
+	fetch_i4
+	push_const 5			//unary->INTEGER_CONST
+	less_equal
+	branch_false L9943
+L9942
+	push_event	//  myself
+	push_const 800			//ShowPage
+	add
+	fetch_i			//ShowPage
+	push_event	//  talker
+	push_const 40			//talker
+	add
+	fetch_i
+S2060.	"guide_krenisk_kmf05.htm"
+	push_string S2060
+	func_call 235012172	//  func[ShowPage]
+	shift_sp -2
+	shift_sp -1
+	jump L9944
+L9943
+	push_event	//  talker
+	push_const 40			//talker
+	add
+	fetch_i			//level
+	push_const 6636			//level
+	add
+	fetch_i4
+	push_const 10			//unary->INTEGER_CONST
+	less_equal
+	branch_false L9946
+L9945
+	push_event	//  myself
+	push_const 800			//ShowPage
+	add
+	fetch_i			//ShowPage
+	push_event	//  talker
+	push_const 40			//talker
+	add
+	fetch_i
+S2061.	"guide_krenisk_kmf10.htm"
+	push_string S2061
+	func_call 235012172	//  func[ShowPage]
+	shift_sp -2
+	shift_sp -1
+	jump L9947
+L9946
+	push_event	//  talker
+	push_const 40			//talker
+	add
+	fetch_i			//level
+	push_const 6636			//level
+	add
+	fetch_i4
+	push_const 15			//unary->INTEGER_CONST
+	less_equal
+	branch_false L9949
+L9948
+	push_event	//  myself
+	push_const 800			//ShowPage
+	add
+	fetch_i			//ShowPage
+	push_event	//  talker
+	push_const 40			//talker
+	add
+	fetch_i
+S2062.	"guide_krenisk_kmf15.htm"
+	push_string S2062
+	func_call 235012172	//  func[ShowPage]
+	shift_sp -2
+	shift_sp -1
+	jump L9950
+L9949
+	push_event	//  myself
+	push_const 800			//ShowPage
+	add
+	fetch_i			//ShowPage
+	push_event	//  talker
+	push_const 40			//talker
+	add
+	fetch_i
+S2063.	"guide_krenisk_kmf20.htm"
+	push_string S2063
+	func_call 235012172	//  func[ShowPage]
+	shift_sp -2
+	shift_sp -1
+L9950
+L9947
+L9944
+	jump L9951
+L9941
+	push_event	//  talker
+	push_const 40			//talker
+	add
+	fetch_i			//occupation
+	push_const 124			//occupation
+	add
+	fetch_i4
+	push_const 124			//unary->INTEGER_CONST
+	equal
+	branch_false L9953
+L9952
+	push_event	//  talker
+	push_const 40			//talker
+	add
+	fetch_i			//level
+	push_const 6636			//level
+	add
+	fetch_i4
+	push_const 5			//unary->INTEGER_CONST
+	less_equal
+	branch_false L9955
+L9954
+	push_event	//  myself
+	push_const 800			//ShowPage
+	add
+	fetch_i			//ShowPage
+	push_event	//  talker
+	push_const 40			//talker
+	add
+	fetch_i
+S2064.	"guide_krenisk_kff05.htm"
+	push_string S2064
+	func_call 235012172	//  func[ShowPage]
+	shift_sp -2
+	shift_sp -1
+	jump L9956
+L9955
+	push_event	//  talker
+	push_const 40			//talker
+	add
+	fetch_i			//level
+	push_const 6636			//level
+	add
+	fetch_i4
+	push_const 10			//unary->INTEGER_CONST
+	less_equal
+	branch_false L9958
+L9957
+	push_event	//  myself
+	push_const 800			//ShowPage
+	add
+	fetch_i			//ShowPage
+	push_event	//  talker
+	push_const 40			//talker
+	add
+	fetch_i
+S2065.	"guide_krenisk_kff10.htm"
+	push_string S2065
+	func_call 235012172	//  func[ShowPage]
+	shift_sp -2
+	shift_sp -1
+	jump L9959
+L9958
+	push_event	//  talker
+	push_const 40			//talker
+	add
+	fetch_i			//level
+	push_const 6636			//level
+	add
+	fetch_i4
+	push_const 15			//unary->INTEGER_CONST
+	less_equal
+	branch_false L9961
+L9960
+	push_event	//  myself
+	push_const 800			//ShowPage
+	add
+	fetch_i			//ShowPage
+	push_event	//  talker
+	push_const 40			//talker
+	add
+	fetch_i
+S2066.	"guide_krenisk_kff15.htm"
+	push_string S2066
+	func_call 235012172	//  func[ShowPage]
+	shift_sp -2
+	shift_sp -1
+	jump L9962
+L9961
+	push_event	//  myself
+	push_const 800			//ShowPage
+	add
+	fetch_i			//ShowPage
+	push_event	//  talker
+	push_const 40			//talker
+	add
+	fetch_i
+S2067.	"guide_krenisk_kff20.htm"
+	push_string S2067
+	func_call 235012172	//  func[ShowPage]
+	shift_sp -2
+	shift_sp -1
+L9962
+L9959
+L9956
+L9953
+L9951
+L9939
+L9935
+	jump L9963
+L9932
+	push_event	//  talker
+	push_const 40			//talker
+	add
+	fetch_i			//race
+	push_const 120			//race
+	add
+	fetch_i4
+	push_event	//  myself
+	push_const 800			//myself
+	add
+	fetch_i			//sm
+	push_const 1480			//sm
+	add
+	fetch_i			//race
+	push_const 120			//race
+	add
+	fetch_i4
+	not_equal
+	branch_false L9965
+L9964
+	push_event	//  myself
+	push_const 800			//ShowPage
+	add
+	fetch_i			//ShowPage
+	push_event	//  talker
+	push_const 40			//talker
+	add
+	fetch_i
+	push_parameter fnRaceMisMatch
+	func_call 235012172	//  func[ShowPage]
+	shift_sp -2
+	shift_sp -1
+	jump L9966
+L9965
+	push_event	//  talker
+	push_const 40			//talker
+	add
+	fetch_i			//level
+	push_const 6636			//level
+	add
+	fetch_i4
+	push_const 20			//unary->INTEGER_CONST
+	greater
+	push_reg_sp
+	fetch_i			//or exit label
+	branch_true L9967
+	push_event	//  myself
+	push_const 800			//IsInCategory
+	add
+	fetch_i			//IsInCategory
+	push_const 6			//unary->INTEGER_CONST
+	push_event	//  talker
+	push_const 40			//talker
+	add
+	fetch_i			//occupation
+	push_const 124			//occupation
+	add
+	fetch_i4
+	func_call 235012324	//  func[IsInCategory]
+	shift_sp -2
+	push_const 0			//unary->INTEGER_CONST
+	equal
+	or
+L9967
+	branch_false L9969
+L9968
+	push_event	//  myself
+	push_const 800			//ShowPage
+	add
+	fetch_i			//ShowPage
+	push_event	//  talker
+	push_const 40			//talker
+	add
+	fetch_i
+	push_parameter fnHighLevel
+	func_call 235012172	//  func[ShowPage]
+	shift_sp -2
+	shift_sp -1
+	jump L9970
+L9969
+	push_event	//  myself
+	push_const 800			//IsInCategory
+	add
+	fetch_i			//IsInCategory
+	push_const 0			//unary->INTEGER_CONST
+	push_event	//  talker
+	push_const 40			//talker
+	add
+	fetch_i			//occupation
+	push_const 124			//occupation
+	add
+	fetch_i4
+	func_call 235012324	//  func[IsInCategory]
+	shift_sp -2
+	branch_false L9972
+L9971
+	push_event	//  talker
+	push_const 40			//talker
+	add
+	fetch_i			//level
+	push_const 6636			//level
+	add
+	fetch_i4
+	push_const 5			//unary->INTEGER_CONST
+	less_equal
+	branch_false L9974
+L9973
+	push_event	//  myself
+	push_const 800			//ShowPage
+	add
+	fetch_i			//ShowPage
+	push_event	//  talker
+	push_const 40			//talker
+	add
+	fetch_i
+	push_parameter fnGuideF05
+	func_call 235012172	//  func[ShowPage]
+	shift_sp -2
+	shift_sp -1
+	jump L9975
+L9974
+	push_event	//  talker
+	push_const 40			//talker
+	add
+	fetch_i			//level
+	push_const 6636			//level
+	add
+	fetch_i4
+	push_const 10			//unary->INTEGER_CONST
+	less_equal
+	branch_false L9977
+L9976
+	push_event	//  myself
+	push_const 800			//ShowPage
+	add
+	fetch_i			//ShowPage
+	push_event	//  talker
+	push_const 40			//talker
+	add
+	fetch_i
+	push_parameter fnGuideF10
+	func_call 235012172	//  func[ShowPage]
+	shift_sp -2
+	shift_sp -1
+	jump L9978
+L9977
+	push_event	//  talker
+	push_const 40			//talker
+	add
+	fetch_i			//level
+	push_const 6636			//level
+	add
+	fetch_i4
+	push_const 15			//unary->INTEGER_CONST
+	less_equal
+	branch_false L9980
+L9979
+	push_event	//  myself
+	push_const 800			//ShowPage
+	add
+	fetch_i			//ShowPage
+	push_event	//  talker
+	push_const 40			//talker
+	add
+	fetch_i
+	push_parameter fnGuideF15
+	func_call 235012172	//  func[ShowPage]
+	shift_sp -2
+	shift_sp -1
+	jump L9981
+L9980
+	push_event	//  myself
+	push_const 800			//ShowPage
+	add
+	fetch_i			//ShowPage
+	push_event	//  talker
+	push_const 40			//talker
+	add
+	fetch_i
+	push_parameter fnGuideF20
+	func_call 235012172	//  func[ShowPage]
+	shift_sp -2
+	shift_sp -1
+L9981
+L9978
+L9975
+	jump L9982
+L9972
+	push_event	//  talker
+	push_const 40			//talker
+	add
+	fetch_i			//level
+	push_const 6636			//level
+	add
+	fetch_i4
+	push_const 7			//unary->INTEGER_CONST
+	less_equal
+	branch_false L9984
+L9983
+	push_event	//  myself
+	push_const 800			//ShowPage
+	add
+	fetch_i			//ShowPage
+	push_event	//  talker
+	push_const 40			//talker
+	add
+	fetch_i
+	push_parameter fnGuideM07
+	func_call 235012172	//  func[ShowPage]
+	shift_sp -2
+	shift_sp -1
+	jump L9985
+L9984
+	push_event	//  talker
+	push_const 40			//talker
+	add
+	fetch_i			//level
+	push_const 6636			//level
+	add
+	fetch_i4
+	push_const 14			//unary->INTEGER_CONST
+	less_equal
+	branch_false L9987
+L9986
+	push_event	//  myself
+	push_const 800			//ShowPage
+	add
+	fetch_i			//ShowPage
+	push_event	//  talker
+	push_const 40			//talker
+	add
+	fetch_i
+	push_parameter fnGuideM14
+	func_call 235012172	//  func[ShowPage]
+	shift_sp -2
+	shift_sp -1
+	jump L9988
+L9987
+	push_event	//  myself
+	push_const 800			//ShowPage
+	add
+	fetch_i			//ShowPage
+	push_event	//  talker
+	push_const 40			//talker
+	add
+	fetch_i
+	push_parameter fnGuideM20
+	func_call 235012172	//  func[ShowPage]
+	shift_sp -2
+	shift_sp -1
+L9988
+L9985
+L9982
+L9970
+L9966
+L9963
+	jump L9989
+L9930
+	push_event	//  ask
+	push_const 160			//ask
+	add
+	fetch_i4
+	push_const 7			//unary->INTEGER_CONST
+	negate
+	equal
+	push_reg_sp
+	fetch_i			//and list
+	branch_false L9990
+	push_event	//  reply
+	push_const 272			//reply
+	add
+	fetch_i
+	push_const 2			//unary->INTEGER_CONST
+	equal
+	and
+L9990
+	branch_false L9992
+L9991
+	push_event	//  talker
+	push_const 40			//talker
+	add
+	fetch_i			//level
+	push_const 6636			//level
+	add
+	fetch_i4
+	push_const 75			//unary->INTEGER_CONST
+	less_equal
+	branch_false L9994
+L9993
+	push_event	//  talker
+	push_const 40			//talker
+	add
+	fetch_i			//level
+	push_const 6636			//level
+	add
+	fetch_i4
+	push_const 6			//unary->INTEGER_CONST
+	less
+	branch_false L9996
+L9995
+	push_event	//  myself
+	push_const 800			//ShowPage
+	add
+	fetch_i			//ShowPage
+	push_event	//  talker
+	push_const 40			//talker
+	add
+	fetch_i
+S2068.	"guide_for_newbie002.htm"
+	push_string S2068
+	func_call 235012172	//  func[ShowPage]
+	shift_sp -2
+	shift_sp -1
+	jump L9997
+L9996
+	push_event	//  myself
+	push_const 800			//IsInCategory
+	add
+	fetch_i			//IsInCategory
+	push_const 66			//unary->INTEGER_CONST
+	push_event	//  talker
+	push_const 40			//talker
+	add
+	fetch_i			//occupation
+	push_const 124			//occupation
+	add
+	fetch_i4
+	func_call 235012324	//  func[IsInCategory]
+	shift_sp -2
+	branch_false L9999
+L9998
+	push_event	//  myself
+	push_const 800			//CastBuffForQuestReward
+	add
+	fetch_i			//CastBuffForQuestReward
+	push_event	//  talker
+	push_const 40			//talker
+	add
+	fetch_i
+	push_const 283246593			//unary->INTEGER_CONST
+	func_call 235012539	//  func[CastBuffForQuestReward]
+	shift_sp -2
+	shift_sp -1
+	push_event	//  myself
+	push_const 800			//CastBuffForQuestReward
+	add
+	fetch_i			//CastBuffForQuestReward
+	push_event	//  talker
+	push_const 40			//talker
+	add
+	fetch_i
+	push_const 283312129			//unary->INTEGER_CONST
+	func_call 235012539	//  func[CastBuffForQuestReward]
+	shift_sp -2
+	shift_sp -1
+	push_event	//  myself
+	push_const 800			//CastBuffForQuestReward
+	add
+	fetch_i			//CastBuffForQuestReward
+	push_event	//  talker
+	push_const 40			//talker
+	add
+	fetch_i
+	push_const 369426433			//unary->INTEGER_CONST
+	func_call 235012539	//  func[CastBuffForQuestReward]
+	shift_sp -2
+	shift_sp -1
+	push_event	//  myself
+	push_const 800			//CastBuffForQuestReward
+	add
+	fetch_i			//CastBuffForQuestReward
+	push_event	//  talker
+	push_const 40			//talker
+	add
+	fetch_i
+	push_const 283377665			//unary->INTEGER_CONST
+	func_call 235012539	//  func[CastBuffForQuestReward]
+	shift_sp -2
+	shift_sp -1
+	push_event	//  myself
+	push_const 800			//CastBuffForQuestReward
+	add
+	fetch_i			//CastBuffForQuestReward
+	push_event	//  talker
+	push_const 40			//talker
+	add
+	fetch_i
+	push_const 283443201			//unary->INTEGER_CONST
+	func_call 235012539	//  func[CastBuffForQuestReward]
+	shift_sp -2
+	shift_sp -1
+	push_event	//  myself
+	push_const 800			//CastBuffForQuestReward
+	add
+	fetch_i			//CastBuffForQuestReward
+	push_event	//  talker
+	push_const 40			//talker
+	add
+	fetch_i
+	push_const 283508737			//unary->INTEGER_CONST
+	func_call 235012539	//  func[CastBuffForQuestReward]
+	shift_sp -2
+	shift_sp -1
+	push_event	//  talker
+	push_const 40			//talker
+	add
+	fetch_i			//level
+	push_const 6636			//level
+	add
+	fetch_i4
+	push_const 6			//unary->INTEGER_CONST
+	greater_equal
+	push_reg_sp
+	fetch_i			//and list
+	branch_false L10000
+	push_event	//  talker
+	push_const 40			//talker
+	add
+	fetch_i			//level
+	push_const 6636			//level
+	add
+	fetch_i4
+	push_const 39			//unary->INTEGER_CONST
+	less_equal
+	and
+L10000
+	branch_false L10002
+L10001
+	push_event	//  myself
+	push_const 800			//CastBuffForQuestReward
+	add
+	fetch_i			//CastBuffForQuestReward
+	push_event	//  talker
+	push_const 40			//talker
+	add
+	fetch_i
+	push_const 283574273			//unary->INTEGER_CONST
+	func_call 235012539	//  func[CastBuffForQuestReward]
+	shift_sp -2
+	shift_sp -1
+L10002
+	push_event	//  talker
+	push_const 40			//talker
+	add
+	fetch_i			//level
+	push_const 6636			//level
+	add
+	fetch_i4
+	push_const 40			//unary->INTEGER_CONST
+	greater_equal
+	push_reg_sp
+	fetch_i			//and list
+	branch_false L10003
+	push_event	//  talker
+	push_const 40			//talker
+	add
+	fetch_i			//level
+	push_const 6636			//level
+	add
+	fetch_i4
+	push_const 75			//unary->INTEGER_CONST
+	less_equal
+	and
+L10003
+	branch_false L10005
+L10004
+	push_event	//  myself
+	push_const 800			//CastBuffForQuestReward
+	add
+	fetch_i			//CastBuffForQuestReward
+	push_event	//  talker
+	push_const 40			//talker
+	add
+	fetch_i
+	push_const 369098753			//unary->INTEGER_CONST
+	func_call 235012539	//  func[CastBuffForQuestReward]
+	shift_sp -2
+	shift_sp -1
+L10005
+	push_event	//  talker
+	push_const 40			//talker
+	add
+	fetch_i			//level
+	push_const 6636			//level
+	add
+	fetch_i4
+	push_const 16			//unary->INTEGER_CONST
+	greater_equal
+	push_reg_sp
+	fetch_i			//and list
+	branch_false L10006
+	push_event	//  talker
+	push_const 40			//talker
+	add
+	fetch_i			//level
+	push_const 6636			//level
+	add
+	fetch_i4
+	push_const 34			//unary->INTEGER_CONST
+	less_equal
+	and
+L10006
+	branch_false L10008
+L10007
+	push_event	//  myself
+	push_const 800			//CastBuffForQuestReward
+	add
+	fetch_i			//CastBuffForQuestReward
+	push_event	//  talker
+	push_const 40			//talker
+	add
+	fetch_i
+	push_const 284295169			//unary->INTEGER_CONST
+	func_call 235012539	//  func[CastBuffForQuestReward]
+	shift_sp -2
+	shift_sp -1
+L10008
+	jump L10009
+L9999
+	push_event	//  myself
+	push_const 800			//IsInCategory
+	add
+	fetch_i			//IsInCategory
+	push_const 67			//unary->INTEGER_CONST
+	push_event	//  talker
+	push_const 40			//talker
+	add
+	fetch_i			//occupation
+	push_const 124			//occupation
+	add
+	fetch_i4
+	func_call 235012324	//  func[IsInCategory]
+	shift_sp -2
+	branch_false L10011
+L10010
+	push_event	//  myself
+	push_const 800			//CastBuffForQuestReward
+	add
+	fetch_i			//CastBuffForQuestReward
+	push_event	//  talker
+	push_const 40			//talker
+	add
+	fetch_i
+	push_const 283246593			//unary->INTEGER_CONST
+	func_call 235012539	//  func[CastBuffForQuestReward]
+	shift_sp -2
+	shift_sp -1
+	push_event	//  myself
+	push_const 800			//CastBuffForQuestReward
+	add
+	fetch_i			//CastBuffForQuestReward
+	push_event	//  talker
+	push_const 40			//talker
+	add
+	fetch_i
+	push_const 283312129			//unary->INTEGER_CONST
+	func_call 235012539	//  func[CastBuffForQuestReward]
+	shift_sp -2
+	shift_sp -1
+	push_event	//  myself
+	push_const 800			//CastBuffForQuestReward
+	add
+	fetch_i			//CastBuffForQuestReward
+	push_event	//  talker
+	push_const 40			//talker
+	add
+	fetch_i
+	push_const 369426433			//unary->INTEGER_CONST
+	func_call 235012539	//  func[CastBuffForQuestReward]
+	shift_sp -2
+	shift_sp -1
+	push_event	//  myself
+	push_const 800			//CastBuffForQuestReward
+	add
+	fetch_i			//CastBuffForQuestReward
+	push_event	//  talker
+	push_const 40			//talker
+	add
+	fetch_i
+	push_const 283639809			//unary->INTEGER_CONST
+	func_call 235012539	//  func[CastBuffForQuestReward]
+	shift_sp -2
+	shift_sp -1
+	push_event	//  myself
+	push_const 800			//CastBuffForQuestReward
+	add
+	fetch_i			//CastBuffForQuestReward
+	push_event	//  talker
+	push_const 40			//talker
+	add
+	fetch_i
+	push_const 283705345			//unary->INTEGER_CONST
+	func_call 235012539	//  func[CastBuffForQuestReward]
+	shift_sp -2
+	shift_sp -1
+	push_event	//  myself
+	push_const 800			//CastBuffForQuestReward
+	add
+	fetch_i			//CastBuffForQuestReward
+	push_event	//  talker
+	push_const 40			//talker
+	add
+	fetch_i
+	push_const 283770881			//unary->INTEGER_CONST
+	func_call 235012539	//  func[CastBuffForQuestReward]
+	shift_sp -2
+	shift_sp -1
+	push_event	//  myself
+	push_const 800			//CastBuffForQuestReward
+	add
+	fetch_i			//CastBuffForQuestReward
+	push_event	//  talker
+	push_const 40			//talker
+	add
+	fetch_i
+	push_const 283836417			//unary->INTEGER_CONST
+	func_call 235012539	//  func[CastBuffForQuestReward]
+	shift_sp -2
+	shift_sp -1
+	push_event	//  talker
+	push_const 40			//talker
+	add
+	fetch_i			//level
+	push_const 6636			//level
+	add
+	fetch_i4
+	push_const 16			//unary->INTEGER_CONST
+	greater_equal
+	push_reg_sp
+	fetch_i			//and list
+	branch_false L10012
+	push_event	//  talker
+	push_const 40			//talker
+	add
+	fetch_i			//level
+	push_const 6636			//level
+	add
+	fetch_i4
+	push_const 34			//unary->INTEGER_CONST
+	less_equal
+	and
+L10012
+	branch_false L10014
+L10013
+	push_event	//  myself
+	push_const 800			//CastBuffForQuestReward
+	add
+	fetch_i			//CastBuffForQuestReward
+	push_event	//  talker
+	push_const 40			//talker
+	add
+	fetch_i
+	push_const 284295169			//unary->INTEGER_CONST
+	func_call 235012539	//  func[CastBuffForQuestReward]
+	shift_sp -2
+	shift_sp -1
+L10014
+L10011
+L10009
+L9997
+	jump L10015
+L9994
+	push_event	//  myself
+	push_const 800			//ShowPage
+	add
+	fetch_i			//ShowPage
+	push_event	//  talker
+	push_const 40			//talker
+	add
+	fetch_i
+S2069.	"guide_for_newbie003.htm"
+	push_string S2069
+	func_call 235012172	//  func[ShowPage]
+	shift_sp -2
+	shift_sp -1
+L10015
+	jump L10016
+L9992
+	push_event	//  ask
+	push_const 160			//ask
+	add
+	fetch_i4
+	push_const 7			//unary->INTEGER_CONST
+	negate
+	equal
+	push_reg_sp
+	fetch_i			//and list
+	branch_false L10017
+	push_event	//  reply
+	push_const 272			//reply
+	add
+	fetch_i
+	push_const 3			//unary->INTEGER_CONST
+	equal
+	and
+L10017
+	branch_false L10019
+L10018
+	push_event	//  talker
+	push_const 40			//talker
+	add
+	fetch_i			//level
+	push_const 6636			//level
+	add
+	fetch_i4
+	push_const 39			//unary->INTEGER_CONST
+	less_equal
+	push_reg_sp
+	fetch_i			//and list
+	branch_false L10020
+	push_event	//  myself
+	push_const 800			//IsInCategory
+	add
+	fetch_i			//IsInCategory
+	push_const 6			//unary->INTEGER_CONST
+	push_event	//  talker
+	push_const 40			//talker
+	add
+	fetch_i			//occupation
+	push_const 124			//occupation
+	add
+	fetch_i4
+	func_call 235012324	//  func[IsInCategory]
+	shift_sp -2
+	push_reg_sp
+	fetch_i			//or exit label
+	branch_true L10021
+	push_event	//  myself
+	push_const 800			//IsInCategory
+	add
+	fetch_i			//IsInCategory
+	push_const 7			//unary->INTEGER_CONST
+	push_event	//  talker
+	push_const 40			//talker
+	add
+	fetch_i			//occupation
+	push_const 124			//occupation
+	add
+	fetch_i4
+	func_call 235012324	//  func[IsInCategory]
+	shift_sp -2
+	or
+L10021
+	and
+L10020
+	branch_false L10023
+L10022
+	push_event	//  myself
+	push_const 800			//CastBuffForQuestReward
+	add
+	fetch_i			//CastBuffForQuestReward
+	push_event	//  talker
+	push_const 40			//talker
+	add
+	fetch_i
+	push_const 339607553			//unary->INTEGER_CONST
+	func_call 235012539	//  func[CastBuffForQuestReward]
+	shift_sp -2
+	shift_sp -1
+	jump L10024
+L10023
+	push_event	//  myself
+	push_const 800			//ShowPage
+	add
+	fetch_i			//ShowPage
+	push_event	//  talker
+	push_const 40			//talker
+	add
+	fetch_i
+S2070.	"pk_protect002.htm"
+	push_string S2070
+	func_call 235012172	//  func[ShowPage]
+	shift_sp -2
+	shift_sp -1
+L10024
+	jump L10025
+L10019
+	push_event	//  ask
+	push_const 160			//ask
+	add
+	fetch_i4
+	push_const 7			//unary->INTEGER_CONST
+	negate
+	equal
+	push_reg_sp
+	fetch_i			//and list
+	branch_false L10026
+	push_event	//  reply
+	push_const 272			//reply
+	add
+	fetch_i
+	push_const 4			//unary->INTEGER_CONST
+	equal
+	and
+L10026
+	branch_false L10028
+L10027
+	push_event	//  c0
+	push_const 416			//c0
+	add
+	push_reg_sp
+	fetch_i			//expr =
+	push_event	//  myself
+	push_const 800			//GetSummon
+	add
+	fetch_i			//GetSummon
+	push_event	//  talker
+	push_const 40			//talker
+	add
+	fetch_i
+	func_call 234946616	//  func[GetSummon]
+	shift_sp -1
+	assign
+	shift_sp -1
+	push_event	//  myself
+	push_const 800			//IsNullCreature
+	add
+	fetch_i			//IsNullCreature
+	push_event	//  c0
+	push_const 416			//c0
+	add
+	fetch_i
+	func_call 234946561	//  func[IsNullCreature]
+	shift_sp -1
+	push_const 0			//unary->INTEGER_CONST
+	equal
+	push_reg_sp
+	fetch_i			//and list
+	branch_false L10029
+	push_event	//  myself
+	push_const 800			//IsInCategory
+	add
+	fetch_i			//IsInCategory
+	push_const 12			//unary->INTEGER_CONST
+	push_event	//  c0
+	push_const 416			//c0
+	add
+	fetch_i			//class_id
+	push_const 7388			//class_id
+	add
+	fetch_i4
+	func_call 235012324	//  func[IsInCategory]
+	shift_sp -2
+	and
+	push_reg_sp
+	fetch_i			//and list
+	branch_false L10029
+	push_event	//  myself
+	push_const 800			//IsInCategory
+	add
+	fetch_i			//IsInCategory
+	push_const 35			//unary->INTEGER_CONST
+	push_event	//  c0
+	push_const 416			//c0
+	add
+	fetch_i			//class_id
+	push_const 7388			//class_id
+	add
+	fetch_i4
+	func_call 235012324	//  func[IsInCategory]
+	shift_sp -2
+	push_const 0			//unary->INTEGER_CONST
+	equal
+	and
+L10029
+	branch_false L10031
+L10030
+	push_event	//  talker
+	push_const 40			//talker
+	add
+	fetch_i			//level
+	push_const 6636			//level
+	add
+	fetch_i4
+	push_const 6			//unary->INTEGER_CONST
+	less
+	push_reg_sp
+	fetch_i			//or exit label
+	branch_true L10032
+	push_event	//  talker
+	push_const 40			//talker
+	add
+	fetch_i			//level
+	push_const 6636			//level
+	add
+	fetch_i4
+	push_const 75			//unary->INTEGER_CONST
+	greater
+	or
+L10032
+	branch_false L10034
+L10033
+	push_event	//  myself
+	push_const 800			//ShowPage
+	add
+	fetch_i			//ShowPage
+	push_event	//  talker
+	push_const 40			//talker
+	add
+	fetch_i
+S2071.	"guide_for_newbie003.htm"
+	push_string S2071
+	func_call 235012172	//  func[ShowPage]
+	shift_sp -2
+	shift_sp -1
+	jump L10035
+L10034
+	push_event	//  myself
+	push_const 800			//CastBuffForQuestReward
+	add
+	fetch_i			//CastBuffForQuestReward
+	push_event	//  c0
+	push_const 416			//c0
+	add
+	fetch_i
+	push_const 283246593			//unary->INTEGER_CONST
+	func_call 235012539	//  func[CastBuffForQuestReward]
+	shift_sp -2
+	shift_sp -1
+	push_event	//  myself
+	push_const 800			//CastBuffForQuestReward
+	add
+	fetch_i			//CastBuffForQuestReward
+	push_event	//  c0
+	push_const 416			//c0
+	add
+	fetch_i
+	push_const 283312129			//unary->INTEGER_CONST
+	func_call 235012539	//  func[CastBuffForQuestReward]
+	shift_sp -2
+	shift_sp -1
+	push_event	//  myself
+	push_const 800			//CastBuffForQuestReward
+	add
+	fetch_i			//CastBuffForQuestReward
+	push_event	//  c0
+	push_const 416			//c0
+	add
+	fetch_i
+	push_const 369426433			//unary->INTEGER_CONST
+	func_call 235012539	//  func[CastBuffForQuestReward]
+	shift_sp -2
+	shift_sp -1
+	push_event	//  myself
+	push_const 800			//CastBuffForQuestReward
+	add
+	fetch_i			//CastBuffForQuestReward
+	push_event	//  c0
+	push_const 416			//c0
+	add
+	fetch_i
+	push_const 283377665			//unary->INTEGER_CONST
+	func_call 235012539	//  func[CastBuffForQuestReward]
+	shift_sp -2
+	shift_sp -1
+	push_event	//  myself
+	push_const 800			//CastBuffForQuestReward
+	add
+	fetch_i			//CastBuffForQuestReward
+	push_event	//  c0
+	push_const 416			//c0
+	add
+	fetch_i
+	push_const 283443201			//unary->INTEGER_CONST
+	func_call 235012539	//  func[CastBuffForQuestReward]
+	shift_sp -2
+	shift_sp -1
+	push_event	//  myself
+	push_const 800			//CastBuffForQuestReward
+	add
+	fetch_i			//CastBuffForQuestReward
+	push_event	//  c0
+	push_const 416			//c0
+	add
+	fetch_i
+	push_const 283508737			//unary->INTEGER_CONST
+	func_call 235012539	//  func[CastBuffForQuestReward]
+	shift_sp -2
+	shift_sp -1
+	push_event	//  myself
+	push_const 800			//CastBuffForQuestReward
+	add
+	fetch_i			//CastBuffForQuestReward
+	push_event	//  c0
+	push_const 416			//c0
+	add
+	fetch_i
+	push_const 283639809			//unary->INTEGER_CONST
+	func_call 235012539	//  func[CastBuffForQuestReward]
+	shift_sp -2
+	shift_sp -1
+	push_event	//  myself
+	push_const 800			//CastBuffForQuestReward
+	add
+	fetch_i			//CastBuffForQuestReward
+	push_event	//  c0
+	push_const 416			//c0
+	add
+	fetch_i
+	push_const 283705345			//unary->INTEGER_CONST
+	func_call 235012539	//  func[CastBuffForQuestReward]
+	shift_sp -2
+	shift_sp -1
+	push_event	//  myself
+	push_const 800			//CastBuffForQuestReward
+	add
+	fetch_i			//CastBuffForQuestReward
+	push_event	//  c0
+	push_const 416			//c0
+	add
+	fetch_i
+	push_const 283770881			//unary->INTEGER_CONST
+	func_call 235012539	//  func[CastBuffForQuestReward]
+	shift_sp -2
+	shift_sp -1
+	push_event	//  myself
+	push_const 800			//CastBuffForQuestReward
+	add
+	fetch_i			//CastBuffForQuestReward
+	push_event	//  c0
+	push_const 416			//c0
+	add
+	fetch_i
+	push_const 283836417			//unary->INTEGER_CONST
+	func_call 235012539	//  func[CastBuffForQuestReward]
+	shift_sp -2
+	shift_sp -1
+	push_event	//  talker
+	push_const 40			//talker
+	add
+	fetch_i			//level
+	push_const 6636			//level
+	add
+	fetch_i4
+	push_const 6			//unary->INTEGER_CONST
+	greater_equal
+	push_reg_sp
+	fetch_i			//and list
+	branch_false L10036
+	push_event	//  talker
+	push_const 40			//talker
+	add
+	fetch_i			//level
+	push_const 6636			//level
+	add
+	fetch_i4
+	push_const 39			//unary->INTEGER_CONST
+	less_equal
+	and
+L10036
+	branch_false L10038
+L10037
+	push_event	//  myself
+	push_const 800			//CastBuffForQuestReward
+	add
+	fetch_i			//CastBuffForQuestReward
+	push_event	//  c0
+	push_const 416			//c0
+	add
+	fetch_i
+	push_const 283574273			//unary->INTEGER_CONST
+	func_call 235012539	//  func[CastBuffForQuestReward]
+	shift_sp -2
+	shift_sp -1
+L10038
+	push_event	//  talker
+	push_const 40			//talker
+	add
+	fetch_i			//level
+	push_const 6636			//level
+	add
+	fetch_i4
+	push_const 40			//unary->INTEGER_CONST
+	greater_equal
+	push_reg_sp
+	fetch_i			//and list
+	branch_false L10039
+	push_event	//  talker
+	push_const 40			//talker
+	add
+	fetch_i			//level
+	push_const 6636			//level
+	add
+	fetch_i4
+	push_const 75			//unary->INTEGER_CONST
+	less_equal
+	and
+L10039
+	branch_false L10041
+L10040
+	push_event	//  myself
+	push_const 800			//CastBuffForQuestReward
+	add
+	fetch_i			//CastBuffForQuestReward
+	push_event	//  c0
+	push_const 416			//c0
+	add
+	fetch_i
+	push_const 369098753			//unary->INTEGER_CONST
+	func_call 235012539	//  func[CastBuffForQuestReward]
+	shift_sp -2
+	shift_sp -1
+L10041
+L10035
+	jump L10042
+L10031
+	push_event	//  myself
+	push_const 800			//ShowPage
+	add
+	fetch_i			//ShowPage
+	push_event	//  talker
+	push_const 40			//talker
+	add
+	fetch_i
+	push_parameter fnNoSummonCreature
+	func_call 235012172	//  func[ShowPage]
+	shift_sp -2
+	shift_sp -1
+L10042
+L10028
+L10025
+L10016
+L9989
+	push_event	//  ask
+	push_const 160			//ask
+	add
+	fetch_i4
+	push_const 1000			//unary->INTEGER_CONST
+	negate
+	equal
+	branch_false L10044
+L10043
+	push_event	//  reply
+	push_const 272			//reply
+	add
+	fetch_i
+	push_reg_sp
+	fetch_i			//select_case compare
+	push_const 1			//select_case
+	equal
+	branch_false L10047
+L10046
+	push_event	//  talker
+	push_const 40			//talker
+	add
+	fetch_i			//level
+	push_const 6636			//level
+	add
+	fetch_i4
+	push_const 5			//unary->INTEGER_CONST
+	greater
+	branch_false L10049
+L10048
+	push_event	//  talker
+	push_const 40			//talker
+	add
+	fetch_i			//level
+	push_const 6636			//level
+	add
+	fetch_i4
+	push_const 20			//unary->INTEGER_CONST
+	less
+	push_reg_sp
+	fetch_i			//and list
+	branch_false L10050
+	push_event	//  myself
+	push_const 800			//IsInCategory
+	add
+	fetch_i			//IsInCategory
+	push_const 6			//unary->INTEGER_CONST
+	push_event	//  talker
+	push_const 40			//talker
+	add
+	fetch_i			//occupation
+	push_const 124			//occupation
+	add
+	fetch_i4
+	func_call 235012324	//  func[IsInCategory]
+	shift_sp -2
+	and
+L10050
+	branch_false L10052
+L10051
+	push_event	//  myself
+	push_const 800			//GetOneTimeQuestFlag
+	add
+	fetch_i			//GetOneTimeQuestFlag
+	push_event	//  talker
+	push_const 40			//talker
+	add
+	fetch_i
+	push_const 207			//unary->INTEGER_CONST
+	func_call 235012210	//  func[GetOneTimeQuestFlag]
+	shift_sp -2
+	push_const 0			//unary->INTEGER_CONST
+	equal
+	branch_false L10054
+L10053
+	push_event	//  myself
+	push_const 800			//GetInventoryInfo
+	add
+	fetch_i			//GetInventoryInfo
+	push_event	//  talker
+	push_const 40			//talker
+	add
+	fetch_i
+	push_const 0			//unary->INTEGER_CONST
+	func_call 235012212	//  func[GetInventoryInfo]
+	shift_sp -2
+	push_event	//  myself
+	push_const 800			//GetInventoryInfo
+	add
+	fetch_i			//GetInventoryInfo
+	push_event	//  talker
+	push_const 40			//talker
+	add
+	fetch_i
+	push_const 1			//unary->INTEGER_CONST
+	func_call 235012212	//  func[GetInventoryInfo]
+	shift_sp -2
+	push_const 0.800000			//unary->FLOAT_CONST
+	mul
+	greater_equal
+	push_reg_sp
+	fetch_i			//or exit label
+	branch_true L10055
+	push_event	//  myself
+	push_const 800			//GetInventoryInfo
+	add
+	fetch_i			//GetInventoryInfo
+	push_event	//  talker
+	push_const 40			//talker
+	add
+	fetch_i
+	push_const 2			//unary->INTEGER_CONST
+	func_call 235012212	//  func[GetInventoryInfo]
+	shift_sp -2
+	push_event	//  myself
+	push_const 800			//GetInventoryInfo
+	add
+	fetch_i			//GetInventoryInfo
+	push_event	//  talker
+	push_const 40			//talker
+	add
+	fetch_i
+	push_const 3			//unary->INTEGER_CONST
+	func_call 235012212	//  func[GetInventoryInfo]
+	shift_sp -2
+	push_const 0.800000			//unary->FLOAT_CONST
+	mul
+	greater_equal
+	or
+L10055
+	branch_false L10057
+L10056
+	push_event	//  myself
+	push_const 800			//ShowSystemMessage
+	add
+	fetch_i			//ShowSystemMessage
+	push_event	//  talker
+	push_const 40			//talker
+	add
+	fetch_i
+	push_const 1118			//unary->INTEGER_CONST
+	func_call 235012174	//  func[ShowSystemMessage]
+	shift_sp -2
+	shift_sp -1
+	exit_handler
+L10057
+	push_event	//  myself
+	push_const 800			//GiveItem1
+	add
+	fetch_i			//GiveItem1
+	push_event	//  talker
+	push_const 40			//talker
+	add
+	fetch_i
+	push_const 7832			//unary->INTEGER_CONST
+	push_parameter num_coupon1
+	func_call 235077769	//  func[GiveItem1]
+	shift_sp -3
+	shift_sp -1
+	push_event	//  myself
+	push_const 800			//SetOneTimeQuestFlag
+	add
+	fetch_i			//SetOneTimeQuestFlag
+	push_event	//  talker
+	push_const 40			//talker
+	add
+	fetch_i
+	push_const 207			//unary->INTEGER_CONST
+	push_const 1			//unary->INTEGER_CONST
+	func_call 235077747	//  func[SetOneTimeQuestFlag]
+	shift_sp -3
+	shift_sp -1
+	push_event	//  myself
+	push_const 800			//ShowPage
+	add
+	fetch_i			//ShowPage
+	push_event	//  talker
+	push_const 40			//talker
+	add
+	fetch_i
+	push_parameter fnCoupon1Ok
+	func_call 235012172	//  func[ShowPage]
+	shift_sp -2
+	shift_sp -1
+	push_event	//  i0
+	push_const 280			//i0
+	add
+	push_reg_sp
+	fetch_i			//expr =
+	push_event	//  gg
+	push_const 704			//GetNRMemoState
+	add
+	fetch_i			//GetNRMemoState
+	push_event	//  talker
+	push_const 40			//talker
+	add
+	fetch_i
+	push_const 41			//unary->INTEGER_CONST
+	func_call 268566621	//  func[GetNRMemoState]
+	shift_sp -2
+	assign
+	shift_sp -1
+	push_event	//  myself
+	push_const 800			//SetNRMemoState
+	add
+	fetch_i			//SetNRMemoState
+	push_event	//  talker
+	push_const 40			//talker
+	add
+	fetch_i
+	push_const 41			//unary->INTEGER_CONST
+	push_event	//  i0
+	push_const 280			//i0
+	add
+	fetch_i
+	push_const 100			//unary->INTEGER_CONST
+	add
+	func_call 235078166	//  func[SetNRMemoState]
+	shift_sp -3
+	shift_sp -1
+	push_event	//  gg
+	push_const 704			//ShowOnScreenMsgFStr
+	add
+	fetch_i			//ShowOnScreenMsgFStr
+	push_event	//  talker
+	push_const 40			//talker
+	add
+	fetch_i
+	push_const 2			//unary->INTEGER_CONST
+	push_const 0			//unary->INTEGER_CONST
+	push_const 0			//unary->INTEGER_CONST
+	push_const 0			//unary->INTEGER_CONST
+	push_const 1			//unary->INTEGER_CONST
+	push_const 0			//unary->INTEGER_CONST
+	push_const 5000			//unary->INTEGER_CONST
+	push_const 0			//unary->INTEGER_CONST
+	push_const 4153			//unary->INTEGER_CONST
+S2072.	""
+	push_string S2072
+S2073.	""
+	push_string S2073
+S2074.	""
+	push_string S2074
+S2075.	""
+	push_string S2075
+S2076.	""
+	push_string S2076
+	func_call 269418500	//  func[ShowOnScreenMsgFStr]
+	shift_sp -15
+	shift_sp -1
+	jump L10058
+L10054
+	push_event	//  myself
+	push_const 800			//ShowPage
+	add
+	fetch_i			//ShowPage
+	push_event	//  talker
+	push_const 40			//talker
+	add
+	fetch_i
+	push_parameter fnCoupon1Not2
+	func_call 235012172	//  func[ShowPage]
+	shift_sp -2
+	shift_sp -1
+L10058
+	jump L10059
+L10052
+	push_event	//  myself
+	push_const 800			//ShowPage
+	add
+	fetch_i			//ShowPage
+	push_event	//  talker
+	push_const 40			//talker
+	add
+	fetch_i
+	push_parameter fnCoupon1Not1
+	func_call 235012172	//  func[ShowPage]
+	shift_sp -2
+	shift_sp -1
+L10059
+	jump L10060
+L10049
+	push_event	//  myself
+	push_const 800			//ShowPage
+	add
+	fetch_i			//ShowPage
+	push_event	//  talker
+	push_const 40			//talker
+	add
+	fetch_i
+	push_parameter fnCoupon1Not1
+	func_call 235012172	//  func[ShowPage]
+	shift_sp -2
+	shift_sp -1
+L10060
+	jump L10045
+	jump L10061
+L10047
+	push_reg_sp
+	fetch_i			//select_case compare
+	push_const 2			//select_case
+	equal
+	branch_false L10062
+L10061
+	push_event	//  myself
+	push_const 800			//IsInCategory
+	add
+	fetch_i			//IsInCategory
+	push_const 7			//unary->INTEGER_CONST
+	push_event	//  talker
+	push_const 40			//talker
+	add
+	fetch_i			//occupation
+	push_const 124			//occupation
+	add
+	fetch_i4
+	func_call 235012324	//  func[IsInCategory]
+	shift_sp -2
+	branch_false L10064
+L10063
+	push_event	//  talker
+	push_const 40			//talker
+	add
+	fetch_i			//level
+	push_const 6636			//level
+	add
+	fetch_i4
+	push_const 40			//unary->INTEGER_CONST
+	less
+	branch_false L10066
+L10065
+	push_event	//  myself
+	push_const 800			//GetOneTimeQuestFlag
+	add
+	fetch_i			//GetOneTimeQuestFlag
+	push_event	//  talker
+	push_const 40			//talker
+	add
+	fetch_i
+	push_const 208			//unary->INTEGER_CONST
+	func_call 235012210	//  func[GetOneTimeQuestFlag]
+	shift_sp -2
+	push_const 0			//unary->INTEGER_CONST
+	equal
+	branch_false L10068
+L10067
+	push_event	//  myself
+	push_const 800			//GetInventoryInfo
+	add
+	fetch_i			//GetInventoryInfo
+	push_event	//  talker
+	push_const 40			//talker
+	add
+	fetch_i
+	push_const 0			//unary->INTEGER_CONST
+	func_call 235012212	//  func[GetInventoryInfo]
+	shift_sp -2
+	push_event	//  myself
+	push_const 800			//GetInventoryInfo
+	add
+	fetch_i			//GetInventoryInfo
+	push_event	//  talker
+	push_const 40			//talker
+	add
+	fetch_i
+	push_const 1			//unary->INTEGER_CONST
+	func_call 235012212	//  func[GetInventoryInfo]
+	shift_sp -2
+	push_const 0.800000			//unary->FLOAT_CONST
+	mul
+	greater_equal
+	push_reg_sp
+	fetch_i			//or exit label
+	branch_true L10069
+	push_event	//  myself
+	push_const 800			//GetInventoryInfo
+	add
+	fetch_i			//GetInventoryInfo
+	push_event	//  talker
+	push_const 40			//talker
+	add
+	fetch_i
+	push_const 2			//unary->INTEGER_CONST
+	func_call 235012212	//  func[GetInventoryInfo]
+	shift_sp -2
+	push_event	//  myself
+	push_const 800			//GetInventoryInfo
+	add
+	fetch_i			//GetInventoryInfo
+	push_event	//  talker
+	push_const 40			//talker
+	add
+	fetch_i
+	push_const 3			//unary->INTEGER_CONST
+	func_call 235012212	//  func[GetInventoryInfo]
+	shift_sp -2
+	push_const 0.800000			//unary->FLOAT_CONST
+	mul
+	greater_equal
+	or
+L10069
+	branch_false L10071
+L10070
+	push_event	//  myself
+	push_const 800			//ShowSystemMessage
+	add
+	fetch_i			//ShowSystemMessage
+	push_event	//  talker
+	push_const 40			//talker
+	add
+	fetch_i
+	push_const 1118			//unary->INTEGER_CONST
+	func_call 235012174	//  func[ShowSystemMessage]
+	shift_sp -2
+	shift_sp -1
+	exit_handler
+L10071
+	push_event	//  myself
+	push_const 800			//GiveItem1
+	add
+	fetch_i			//GiveItem1
+	push_event	//  talker
+	push_const 40			//talker
+	add
+	fetch_i
+	push_const 7833			//unary->INTEGER_CONST
+	push_parameter num_coupon2
+	func_call 235077769	//  func[GiveItem1]
+	shift_sp -3
+	shift_sp -1
+	push_event	//  myself
+	push_const 800			//SetOneTimeQuestFlag
+	add
+	fetch_i			//SetOneTimeQuestFlag
+	push_event	//  talker
+	push_const 40			//talker
+	add
+	fetch_i
+	push_const 208			//unary->INTEGER_CONST
+	push_const 1			//unary->INTEGER_CONST
+	func_call 235077747	//  func[SetOneTimeQuestFlag]
+	shift_sp -3
+	shift_sp -1
+	push_event	//  myself
+	push_const 800			//ShowPage
+	add
+	fetch_i			//ShowPage
+	push_event	//  talker
+	push_const 40			//talker
+	add
+	fetch_i
+	push_parameter fnCoupon2Ok
+	func_call 235012172	//  func[ShowPage]
+	shift_sp -2
+	shift_sp -1
+	jump L10072
+L10068
+	push_event	//  myself
+	push_const 800			//ShowPage
+	add
+	fetch_i			//ShowPage
+	push_event	//  talker
+	push_const 40			//talker
+	add
+	fetch_i
+	push_parameter fnCoupon2Not2
+	func_call 235012172	//  func[ShowPage]
+	shift_sp -2
+	shift_sp -1
+L10072
+	jump L10073
+L10066
+	push_event	//  myself
+	push_const 800			//ShowPage
+	add
+	fetch_i			//ShowPage
+	push_event	//  talker
+	push_const 40			//talker
+	add
+	fetch_i
+	push_parameter fnCoupon2Not1
+	func_call 235012172	//  func[ShowPage]
+	shift_sp -2
+	shift_sp -1
+L10073
+	jump L10074
+L10064
+	push_event	//  myself
+	push_const 800			//ShowPage
+	add
+	fetch_i			//ShowPage
+	push_event	//  talker
+	push_const 40			//talker
+	add
+	fetch_i
+	push_parameter fnCoupon2Not1
+	func_call 235012172	//  func[ShowPage]
+	shift_sp -2
+	shift_sp -1
+L10074
+	jump L10045
+	jump L10075
+L10062
+L10075
+L10045
+	shift_sp -1
+L10044
+	push_event	//  ask
+	push_const 160			//ask
+	add
+	fetch_i4
+	push_const 303			//unary->INTEGER_CONST
+	negate
+	equal
+	branch_false L10077
+L10076
+	push_event	//  reply
+	push_const 272			//reply
+	add
+	fetch_i
+	push_reg_sp
+	fetch_i			//select_case compare
+	push_const 528			//select_case
+	equal
+	branch_false L10080
+L10079
+	jump L10081
+L10080
+	push_reg_sp
+	fetch_i			//select_case compare
+	push_const 530			//select_case
+	equal
+	branch_false L10082
+L10081
+	push_event	//  talker
+	push_const 40			//talker
+	add
+	fetch_i			//level
+	push_const 6636			//level
+	add
+	fetch_i4
+	push_const 5			//unary->INTEGER_CONST
+	greater
+	branch_false L10084
+L10083
+	push_event	//  talker
+	push_const 40			//talker
+	add
+	fetch_i			//level
+	push_const 6636			//level
+	add
+	fetch_i4
+	push_const 20			//unary->INTEGER_CONST
+	less
+	push_reg_sp
+	fetch_i			//and list
+	branch_false L10085
+	push_event	//  myself
+	push_const 800			//IsInCategory
+	add
+	fetch_i			//IsInCategory
+	push_const 6			//unary->INTEGER_CONST
+	push_event	//  talker
+	push_const 40			//talker
+	add
+	fetch_i			//occupation
+	push_const 124			//occupation
+	add
+	fetch_i4
+	func_call 235012324	//  func[IsInCategory]
+	shift_sp -2
+	and
+L10085
+	branch_false L10087
+L10086
+	push_event	//  reply
+	push_const 272			//reply
+	add
+	fetch_i
+	push_const 532			//unary->INTEGER_CONST
+	not_equal
+	push_reg_sp
+	fetch_i			//or exit label
+	branch_true L10088
+	push_event	//  reply
+	push_const 272			//reply
+	add
+	fetch_i
+	push_const 549			//unary->INTEGER_CONST
+	not_equal
+	or
+L10088
+	branch_false L10090
+L10089
+	push_event	//  myself
+	push_const 800			//ShowMultisell
+	add
+	fetch_i			//ShowMultisell
+	push_event	//  reply
+	push_const 272			//reply
+	add
+	fetch_i
+	push_event	//  talker
+	push_const 40			//talker
+	add
+	fetch_i
+	func_call 235012190	//  func[ShowMultisell]
+	shift_sp -2
+	shift_sp -1
+L10090
+	jump L10091
+L10087
+	push_event	//  reply
+	push_const 272			//reply
+	add
+	fetch_i
+	push_const 557			//unary->INTEGER_CONST
+	greater_equal
+	push_reg_sp
+	fetch_i			//and list
+	branch_false L10092
+	push_event	//  reply
+	push_const 272			//reply
+	add
+	fetch_i
+	push_const 562			//unary->INTEGER_CONST
+	less_equal
+	and
+L10092
+	branch_false L10094
+L10093
+	push_event	//  myself
+	push_const 800			//myself
+	add
+	fetch_i			//sm
+	push_const 1480			//sm
+	add
+	fetch_i			//class_id
+	push_const 7388			//class_id
+	add
+	fetch_i4
+	push_const 1032103			//unary->INTEGER_CONST
+	equal
+	branch_false L10096
+L10095
+	push_event	//  myself
+	push_const 800			//ShowMultisell
+	add
+	fetch_i			//ShowMultisell
+	push_event	//  reply
+	push_const 272			//reply
+	add
+	fetch_i
+	push_event	//  talker
+	push_const 40			//talker
+	add
+	fetch_i
+	func_call 235012190	//  func[ShowMultisell]
+	shift_sp -2
+	shift_sp -1
+L10096
+	jump L10097
+L10094
+	push_event	//  reply
+	push_const 272			//reply
+	add
+	fetch_i
+	push_const 567			//unary->INTEGER_CONST
+	equal
+	branch_false L10099
+L10098
+	push_event	//  myself
+	push_const 800			//myself
+	add
+	fetch_i			//sm
+	push_const 1480			//sm
+	add
+	fetch_i			//class_id
+	push_const 7388			//class_id
+	add
+	fetch_i4
+	push_const 1032091			//unary->INTEGER_CONST
+	equal
+	branch_false L10101
+L10100
+	push_event	//  myself
+	push_const 800			//ShowMultisell
+	add
+	fetch_i			//ShowMultisell
+	push_event	//  reply
+	push_const 272			//reply
+	add
+	fetch_i
+	push_event	//  talker
+	push_const 40			//talker
+	add
+	fetch_i
+	func_call 235012190	//  func[ShowMultisell]
+	shift_sp -2
+	shift_sp -1
+L10101
+	jump L10102
+L10099
+	push_event	//  myself
+	push_const 800			//ShowPage
+	add
+	fetch_i			//ShowPage
+	push_event	//  talker
+	push_const 40			//talker
+	add
+	fetch_i
+	push_parameter fnCoupon1Not3
+	func_call 235012172	//  func[ShowPage]
+	shift_sp -2
+	shift_sp -1
+L10102
+L10097
+L10091
+	jump L10103
+L10084
+	push_event	//  myself
+	push_const 800			//ShowPage
+	add
+	fetch_i			//ShowPage
+	push_event	//  talker
+	push_const 40			//talker
+	add
+	fetch_i
+	push_parameter fnCoupon1Not3
+	func_call 235012172	//  func[ShowPage]
+	shift_sp -2
+	shift_sp -1
+L10103
+	jump L10078
+	jump L10104
+L10082
+	push_reg_sp
+	fetch_i			//select_case compare
+	push_const 529			//select_case
+	equal
+	branch_false L10105
+L10104
+	jump L10106
+L10105
+	push_reg_sp
+	fetch_i			//select_case compare
+	push_const 531			//select_case
+	equal
+	branch_false L10107
+L10106
+	push_event	//  myself
+	push_const 800			//IsInCategory
+	add
+	fetch_i			//IsInCategory
+	push_const 7			//unary->INTEGER_CONST
+	push_event	//  talker
+	push_const 40			//talker
+	add
+	fetch_i			//occupation
+	push_const 124			//occupation
+	add
+	fetch_i4
+	func_call 235012324	//  func[IsInCategory]
+	shift_sp -2
+	branch_false L10109
+L10108
+	push_event	//  talker
+	push_const 40			//talker
+	add
+	fetch_i			//level
+	push_const 6636			//level
+	add
+	fetch_i4
+	push_const 40			//unary->INTEGER_CONST
+	less
+	branch_false L10111
+L10110
+	push_event	//  reply
+	push_const 272			//reply
+	add
+	fetch_i
+	push_const 532			//unary->INTEGER_CONST
+	not_equal
+	push_reg_sp
+	fetch_i			//or exit label
+	branch_true L10112
+	push_event	//  reply
+	push_const 272			//reply
+	add
+	fetch_i
+	push_const 549			//unary->INTEGER_CONST
+	not_equal
+	or
+L10112
+	branch_false L10114
+L10113
+	push_event	//  myself
+	push_const 800			//ShowMultisell
+	add
+	fetch_i			//ShowMultisell
+	push_event	//  reply
+	push_const 272			//reply
+	add
+	fetch_i
+	push_event	//  talker
+	push_const 40			//talker
+	add
+	fetch_i
+	func_call 235012190	//  func[ShowMultisell]
+	shift_sp -2
+	shift_sp -1
+L10114
+	jump L10115
+L10111
+	push_event	//  reply
+	push_const 272			//reply
+	add
+	fetch_i
+	push_const 557			//unary->INTEGER_CONST
+	greater_equal
+	push_reg_sp
+	fetch_i			//and list
+	branch_false L10116
+	push_event	//  reply
+	push_const 272			//reply
+	add
+	fetch_i
+	push_const 562			//unary->INTEGER_CONST
+	less_equal
+	and
+L10116
+	branch_false L10118
+L10117
+	push_event	//  myself
+	push_const 800			//myself
+	add
+	fetch_i			//sm
+	push_const 1480			//sm
+	add
+	fetch_i			//class_id
+	push_const 7388			//class_id
+	add
+	fetch_i4
+	push_const 1032103			//unary->INTEGER_CONST
+	equal
+	branch_false L10120
+L10119
+	push_event	//  myself
+	push_const 800			//ShowMultisell
+	add
+	fetch_i			//ShowMultisell
+	push_event	//  reply
+	push_const 272			//reply
+	add
+	fetch_i
+	push_event	//  talker
+	push_const 40			//talker
+	add
+	fetch_i
+	func_call 235012190	//  func[ShowMultisell]
+	shift_sp -2
+	shift_sp -1
+L10120
+	jump L10121
+L10118
+	push_event	//  reply
+	push_const 272			//reply
+	add
+	fetch_i
+	push_const 567			//unary->INTEGER_CONST
+	equal
+	branch_false L10123
+L10122
+	push_event	//  myself
+	push_const 800			//myself
+	add
+	fetch_i			//sm
+	push_const 1480			//sm
+	add
+	fetch_i			//class_id
+	push_const 7388			//class_id
+	add
+	fetch_i4
+	push_const 1032091			//unary->INTEGER_CONST
+	equal
+	branch_false L10125
+L10124
+	push_event	//  myself
+	push_const 800			//ShowMultisell
+	add
+	fetch_i			//ShowMultisell
+	push_event	//  reply
+	push_const 272			//reply
+	add
+	fetch_i
+	push_event	//  talker
+	push_const 40			//talker
+	add
+	fetch_i
+	func_call 235012190	//  func[ShowMultisell]
+	shift_sp -2
+	shift_sp -1
+L10125
+	jump L10126
+L10123
+	push_event	//  myself
+	push_const 800			//ShowPage
+	add
+	fetch_i			//ShowPage
+	push_event	//  talker
+	push_const 40			//talker
+	add
+	fetch_i
+	push_parameter fnCoupon2Not3
+	func_call 235012172	//  func[ShowPage]
+	shift_sp -2
+	shift_sp -1
+L10126
+L10121
+L10115
+	jump L10127
+L10109
+	push_event	//  myself
+	push_const 800			//ShowPage
+	add
+	fetch_i			//ShowPage
+	push_event	//  talker
+	push_const 40			//talker
+	add
+	fetch_i
+	push_parameter fnCoupon2Not3
+	func_call 235012172	//  func[ShowPage]
+	shift_sp -2
+	shift_sp -1
+L10127
+	jump L10078
+	jump L10128
+L10107
+L10128
+L10078
+	shift_sp -1
+L10077
+handler_end
+
+handler 27 112	//  TELEPORT_REQUESTED
+	variable_begin
+		"talker"
+		"myself"
+		"_choiceN"
+		"_code"
+		"_from_choice"
+	variable_end
+
+	push_event	//  talker
+	push_const 40			//talker
+	add
+	fetch_i			//level
+	push_const 6636			//level
+	add
+	fetch_i4
+	push_const 21			//unary->INTEGER_CONST
+	greater_equal
+	branch_false L10130
+L10129
+	push_event	//  myself
+	push_const 800			//ShowPage
+	add
+	fetch_i			//ShowPage
+	push_event	//  talker
+	push_const 40			//talker
+	add
+	fetch_i
+S2077.	"guide_teleport_over001.htm"
+	push_string S2077
+	func_call 235012172	//  func[ShowPage]
+	shift_sp -2
+	shift_sp -1
+	jump L10131
+L10130
+	push_event	//  talker
+	push_const 40			//talker
+	add
+	fetch_i			//transformID
+	push_const 7552			//transformID
+	add
+	fetch_i4
+	push_const 111			//unary->INTEGER_CONST
+	equal
+	push_reg_sp
+	fetch_i			//or exit label
+	branch_true L10132
+	push_event	//  talker
+	push_const 40			//talker
+	add
+	fetch_i			//transformID
+	push_const 7552			//transformID
+	add
+	fetch_i4
+	push_const 112			//unary->INTEGER_CONST
+	equal
+	or
+	push_reg_sp
+	fetch_i			//or exit label
+	branch_true L10132
+	push_event	//  talker
+	push_const 40			//talker
+	add
+	fetch_i			//transformID
+	push_const 7552			//transformID
+	add
+	fetch_i4
+	push_const 124			//unary->INTEGER_CONST
+	equal
+	or
+L10132
+	branch_false L10134
+L10133
+	push_event	//  myself
+	push_const 800			//ShowPage
+	add
+	fetch_i			//ShowPage
+	push_event	//  talker
+	push_const 40			//talker
+	add
+	fetch_i
+S2078.	"q194_noteleport.htm"
+	push_string S2078
+	func_call 235012172	//  func[ShowPage]
+	shift_sp -2
+	shift_sp -1
+	jump L10135
+L10134
+	push_event	//  myself
+	push_const 800			//TeleportFStr
+	add
+	fetch_i			//TeleportFStr
+	push_event	//  talker
+	push_const 40			//talker
+	add
+	fetch_i
+	push_property Position
+	push_parameter ShopName
+S2079.	""
+	push_string S2079
+S2080.	""
+	push_string S2080
+S2081.	""
+	push_string S2081
+	push_const 57			//unary->INTEGER_CONST
+	push_const 1000308			//unary->INTEGER_CONST
+S2082.	""
+	push_string S2082
+S2083.	""
+	push_string S2083
+S2084.	""
+	push_string S2084
+S2085.	""
+	push_string S2085
+S2086.	""
+	push_string S2086
+	func_call 235733078	//  func[TeleportFStr]
+	shift_sp -13
+	shift_sp -1
+L10135
+L10131
+handler_end
+
+class_end
